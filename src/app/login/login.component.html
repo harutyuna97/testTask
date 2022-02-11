@@ -1,3 +1,30 @@
-<div>
-  Login component
+<div class="loginBlock">
+  <div class="loginTitle">
+    <h1>Welcome to Task Management</h1>
+    <p>Please login to continue</p>
+  </div>
+  <form (ngSubmit)="submit()" [formGroup]="loginForm" class="loginForm">
+    <input type="submit" style="display: none" />
+    <input formControlName="email" type="text" placeholder="Email" (keydown.space)="$event.preventDefault();">
+      <small *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.email">Enter a valid email address</small>
+      <small *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.required">This field is required</small>
+    <input formControlName="password" type="password" placeholder="Password" (keydown.space)="$event.preventDefault();">
+      <small *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.minlength">
+        Password must be at least 6 characters long, enter another
+        {{loginForm.get('password').errors?.minlength?.requiredLength - loginForm.get('password').errors?.minlength?.actualLength}}
+        {{loginForm.get('password').errors?.minlength?.actualLength === 5 ? 'character' : 'characters'}}
+      </small>
+      <small *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">This field is required</small>
+  </form>
+  <small class="loginErrorText" *ngIf="loginError">
+    Wrong email or password
+  </small>
+  <button
+    type="submit"
+    (click)="submit()"
+    [disabled]="loginForm.invalid"
+    class="loginButton"
+  >
+    Login
+  </button>
 </div>
