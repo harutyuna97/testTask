@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   login() {
-    localStorage.setItem('token', 'sajdhisaudhis515151545sd5s4da5dasdsad');
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
     this.router.navigate(['/']);
     this.loggedIn.next(true);
   }

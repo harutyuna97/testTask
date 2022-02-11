@@ -1,3 +1,38 @@
-<div>
-  Home component
+<div class="homeContainer">
+  <div class="tasksList">
+    <h2 class="tasksListTitle">Tasks List</h2>
+    <button class="newTaskButton">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="14" height="14" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+      <span>Add New</span>
+    </button>
+    <div class="tasksListContent">
+      <table id="tasks">
+        <tr>
+          <th class="name">Task name</th>
+          <th class="description">Description</th>
+          <th class="status">Status</th>
+          <th class="actions">Actions</th>
+          <th class="date">Date</th>
+        </tr>
+        <tr class="tasksInfo">
+          <td>Name</td>
+          <td>2</td>
+          <td>3</td>
+          <td>
+            <button>Done</button>
+            <button>Remove</button>
+            <button>Edit</button>
+          </td>
+          <td>5</td>
+        </tr>
+        <tr class="tasksInfo">
+          <td>Name</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
