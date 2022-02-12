@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ITask} from '../interfaces/tasks.interface';
-import * as moment from 'moment';
+import {TasksService} from '../services/tasks.service';
 
 @Component({
   selector: 'app-modal',
@@ -9,9 +9,11 @@ import * as moment from 'moment';
   styleUrls: ['./modal.component.scss']
 })
 
-export class ModalComponent {
+export class ModalComponent implements OnChanges {
 
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input() task: ITask;
 
   newTask: ITask;
 
@@ -20,7 +22,17 @@ export class ModalComponent {
     description: new FormControl('', [Validators.required]),
   });
 
-  constructor() {
+  constructor(
+    private tasksService: TasksService
+  ) {
+  }
+
+  ngOnChanges() {
+    if (this.task) {
+      this.modalForm.get('name').patchValue(this.task.name);
+      this.modalForm.get('description').patchValue(this.task.description);
+      this.newTask = this.task;
+    }
   }
 
   close() {
@@ -31,8 +43,14 @@ export class ModalComponent {
     if (this.modalForm.invalid) {
       return alert('Please fill out all fields, with correct format');
     }
+    if (this.task) {
+      this.newTask.name = this.modalForm.get('name').value;
+      this.newTask.description = this.modalForm.get('description').value;
+      this.tasksService.editTask(this.newTask);
+      return this.close();
+    }
     this.newTask = this.modalForm.value;
-    this.newTask.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-    this.newTask.status = 'toDo';
+    this.tasksService.setTask(this.newTask);
+    return this.close();
   }
 }

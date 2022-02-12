@@ -37,7 +37,7 @@
       border-spacing: 0;
       margin-top: 50px;
       th {
-        padding: 12px;
+        padding: 15px;
         text-align: left;
         color: black;
         border-bottom: 2px solid black;
@@ -48,14 +48,34 @@
       .tasksInfo {
         border-left: 2px solid black;
         td {
-          padding: 10px;
+          padding: 15px;
           min-width: 100px;
           button {
             padding: 7px 4px;
-            background-color: #eeeeee;
+            background-color: #afafaf;
             color: black;
-            margin-left: 20px;
+            margin-right: 20px;
             min-width: 100px;
+            border: none;
+            &:hover {
+              background-color: #efefef;
+            }
+            &.done {
+              background-color: green;
+              &:hover {
+                background-color: lightgreen;
+              }
+              &:disabled {
+                background-color: #eeeeee;
+                color: #d2cfcf;
+              }
+            }
+            &.remove {
+              background-color: red;
+              &:hover {
+                background-color: #f84343;
+              }
+            }
           }
         }
         td:not(:nth-child(4)) {

@@ -1,14 +1,45 @@
 <div class="modal">
   <div class="modalContent">
-    <span (click)="close()" class="close">&times;</span>
+    <span
+      (click)="close()"
+      class="close"
+    >
+      &times;
+    </span>
     <h2>Add Task</h2>
     <div class="modalFields">
-      <form (ngSubmit)="submit()" [formGroup]="modalForm">
-        <input formControlName="name" type="text" placeholder="Name">
-        <small *ngIf="modalForm.get('name').touched && modalForm.get('name').errors?.required">This field is required</small>
-        <input formControlName="description" type="text" placeholder="Description">
-        <small *ngIf="modalForm.get('description').touched && modalForm.get('description').errors?.required">This field is required</small>
-        <button [disabled]="modalForm.invalid" type="submit">Submit</button>
+      <form
+        (ngSubmit)="submit()"
+        [formGroup]="modalForm"
+      >
+        <input
+          formControlName="name"
+          type="text"
+          placeholder="Name"
+        >
+        <small
+          *ngIf="modalForm.get('name').touched &&
+          modalForm.get('name').errors?.required"
+        >
+          This field is required
+        </small>
+        <input
+          formControlName="description"
+          type="text"
+          placeholder="Description"
+        >
+        <small
+          *ngIf="modalForm.get('description').touched &&
+          modalForm.get('description').errors?.required"
+        >
+          This field is required
+        </small>
+        <button
+          [disabled]="modalForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>
