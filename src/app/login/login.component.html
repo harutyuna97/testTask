@@ -15,16 +15,16 @@
         {{loginForm.get('password').errors?.minlength?.actualLength === 5 ? 'character' : 'characters'}}
       </small>
       <small *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">This field is required</small>
+    <small class="loginErrorText" *ngIf="loginError">
+      Wrong email or password
+    </small>
+    <button
+      type="submit"
+      (click)="submit()"
+      [disabled]="loginForm.invalid"
+      class="loginButton"
+    >
+      Login
+    </button>
   </form>
-  <small class="loginErrorText" *ngIf="loginError">
-    Wrong email or password
-  </small>
-  <button
-    type="submit"
-    (click)="submit()"
-    [disabled]="loginForm.invalid"
-    class="loginButton"
-  >
-    Login
-  </button>
 </div>

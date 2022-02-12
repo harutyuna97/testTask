@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import {ILoginInterface} from '../interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
 
   loginError = false;
 
-  staticLoginInfo = {email: 'test@mail.com', password: 'testtest'};
+  staticLoginInfo: ILoginInterface = {email: 'test@mail.com', password: 'testtest'};
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
