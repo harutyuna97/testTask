@@ -1,0 +1,90 @@
+.tasksList {
+  width: 85%;
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+  border: 2px solid black;
+  margin: 20px auto;
+  .tasksListTitle {
+    margin-left: 20px;
+  }
+  @media (max-width: 720px) {
+    width: 98%;
+    padding: 0;
+  }
+  .newTaskButton {
+    background-color: #007e92;
+    padding: 10px 8px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+    &:hover {
+      background-color: #0197ad;
+    }
+    span {
+      margin-left: 5px;
+    }
+  }
+  .tasksListContent {
+    #tasks {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      border-collapse: collapse;
+      width: 100%;
+      border-spacing: 0;
+      margin-top: 50px;
+      user-select: none;
+      th {
+        padding: 15px;
+        text-align: left;
+        color: black;
+        border-bottom: 2px solid black;
+        &.actions {
+          width: 40%;
+        }
+      }
+      .tasksInfo {
+        border-left: 2px solid black;
+        td {
+          padding: 15px;
+          min-width: 100px;
+          button {
+            padding: 7px 4px;
+            background-color: #afafaf;
+            color: black;
+            margin-right: 20px;
+            min-width: 100px;
+            border: none;
+            &:hover {
+              background-color: #efefef;
+            }
+            &.done {
+              background-color: green;
+              &:hover {
+                background-color: lightgreen;
+              }
+              &:disabled {
+                background-color: #eeeeee;
+                color: #d2cfcf;
+              }
+            }
+            &.remove {
+              background-color: red;
+              &:hover {
+                background-color: #f84343;
+              }
+            }
+          }
+        }
+        td:not(:nth-child(4)) {
+          max-width: 100px;
+          overflow-wrap: normal;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}

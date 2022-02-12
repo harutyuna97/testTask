@@ -1,0 +1,69 @@
+<div
+  *ngIf="!showModal"
+  class="homeContainer"
+>
+  <div class="tasksList">
+    <h2 class="tasksListTitle">Tasks List</h2>
+    <button
+      (click)="showModal = true"
+      class="newTaskButton"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="14" height="14" viewBox="0 0 24 24">
+        <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+      </svg>
+      <span>Add New</span>
+    </button>
+    <div class="tasksListContent">
+      <table id="tasks">
+        <tr>
+          <th class="name">Task name</th>
+          <th class="description">Description</th>
+          <th class="status">Status</th>
+          <th class="actions">Actions</th>
+          <th class="date">Date</th>
+        </tr>
+        <tr *ngIf="!tasks.length; else tasksList">
+          No tasks
+        </tr>
+        <ng-template #tasksList>
+          <tr
+            *ngFor="let task of tasks"
+            class="tasksInfo"
+          >
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.status}}</td>
+            <td>
+              <button
+                class="done"
+                (click)="finishTask(task)"
+                [disabled]="task.status === Status.Done"
+              >
+                Done
+              </button>
+              <button
+                class="remove"
+                (click)="removeTask(task.id)"
+              >
+                Remove
+              </button>
+              <button
+                class="edit"
+                (click)="editTask(task)"
+              >
+                Edit
+              </button>
+            </td>
+            <td>{{task.date}}</td>
+          </tr>
+        </ng-template>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-modal
+  *ngIf="showModal"
+  (closeModal)="closeModal()"
+  [task]="task"
+></app-modal>
